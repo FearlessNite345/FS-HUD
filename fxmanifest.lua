@@ -1,11 +1,15 @@
 fx_version 'cerulean'
 game "gta5"
 author "FearlessStudios"
-version '1.0.0'
+version '1.1'
 lua54 'yes'
 
 escrow_ignore {
   'config/**/*'
+}
+
+files {
+  'config/postals.json'
 }
 
 client_scripts {
@@ -17,6 +21,6 @@ server_scripts {
 }
 
 shared_scripts {
-    'shared/*.lua',
-    'config/*.lua'
+  'shared/*.lua',
+  'config/*.lua'
 }

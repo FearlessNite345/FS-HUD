@@ -1,55 +1,3 @@
-function GetClosestModelWithinDistance(maxDistance, items)
-    local playerPed = PlayerPedId()
-    local playerCoords = GetEntityCoords(playerPed)
-
-    local closestModelCoords, closestModelHandle, closestTextOffset
-    local closestDistance = maxDistance + 1
-
-    local function checkAndUpdateClosest(modelHash, textOffset)
-        local modelHandle = GetClosestObjectOfType(playerCoords.x,
-                                                   playerCoords.y,
-                                                   playerCoords.z, 10.0,
-                                                   modelHash, false, false,
-                                                   false)
-
-        if DoesEntityExist(modelHandle) then
-            local modelCoords = GetEntityCoords(modelHandle)
-            local distance = #(playerCoords - modelCoords)
-
-            if distance <= maxDistance and distance < closestDistance then
-                closestModelCoords = modelCoords
-                closestModelHandle = modelHandle
-                closestTextOffset = textOffset
-                closestDistance = distance
-            end
-        end
-    end
-
-    for _, modelPropData in ipairs(items) do
-        checkAndUpdateClosest(modelPropData.model,
-                              modelPropData.textHeightOffset)
-    end
-
-    return closestModelCoords, closestModelHandle, closestTextOffset
-end
-
-function SetupModel(model)
-    RequestModel(model)
-    while not HasModelLoaded(model) do
-        RequestModel(model)
-        Citizen.Wait(0)
-    end
-    SetModelAsNoLongerNeeded(model)
-end
-
-function RandomLimited(min, max, limit)
-    local result
-    repeat
-        result = math.random(min, max)
-    until math.abs(result) >= limit
-    return result
-end
-
 function DrawNotification3D(coords, text, seconds, color)
     local startTime = GetGameTimer()
     local duration = seconds * 1000
@@ -70,6 +18,74 @@ function DrawNotification2D(text, seconds, color)
     end
 end
 
+function DrawRct(x, y, width, height, r, g, b, a)
+    DrawRect(x + width/2, y + height/2, width, height, r, g, b, a)
+end
+
+function ConvertToPixels(x, y)
+    local res_x, res_y = GetActiveScreenResolution()
+    local px_x = x * res_x
+    local px_y = y * res_y
+    return px_x, px_y
+end
+
+function CapitalizeFirst(str)
+    return (str:gsub("^%l", string.upper))
+end
+
+
+function GetCurrentTime(use24hrFormat)
+    local hours
+    local minutes
+    local month
+    local day
+    local year
+    
+    if Config.useGametime then
+        hours = GetClockHours()
+        minutes = GetClockMinutes()
+        month = tonumber(GetClockMonth())
+        day = tonumber(GetClockDayOfMonth())
+        year = tonumber(GetClockYear())
+    else
+        year, month, day, hours, minutes, _ = GetLocalTime()
+    end
+
+    local hourStr
+    local minuteStr
+
+    -- Add leading zeros if necessary
+    if hours < 10 then
+        hourStr = string.format("%02d", hours)
+    else
+        hourStr = tostring(hours)
+    end
+
+    if minutes < 10 then
+        minuteStr = string.format("%02d", minutes)
+    else
+        minuteStr = tostring(minutes)
+    end
+
+    local dateString = month .. '/' .. day .. '/' .. year
+    local timeString
+    if use24hrFormat then
+        timeString = hourStr .. ':' .. minuteStr
+    else
+        local ampm = "AM"
+        if hours >= 12 then
+            ampm = "PM"
+        end
+        local formattedHour = hours % 12
+        if formattedHour == 0 then
+            formattedHour = 12
+        end
+        timeString = formattedHour .. ':' .. minuteStr .. ' ' .. ampm
+    end
+
+    return dateString, timeString
+end
+
 function DrawText3D(x, y, z, scale, text)
     local onScreen, _x, _y = World3dToScreen2d(x, y, z)
 
@@ -86,11 +102,11 @@ function DrawText3D(x, y, z, scale, text)
     end
 end
 
-function DrawText2D(x, y, text, scale, center)
+function DrawText2D(x, y, text, scale, center, R, G, B)
     SetTextFont(4)
     SetTextProportional(true)
     SetTextScale(scale, scale)
-    SetTextColour(255, 255, 255, 255)
+    SetTextColour(R, G, B, 255)
     SetTextDropShadow()
     SetTextEdge(4, 0, 0, 0, 255)
     SetTextOutline()
@@ -98,4 +114,11 @@ function DrawText2D(x, y, text, scale, center)
     SetTextEntry("STRING")
     AddTextComponentString(text)
     DrawText(x, y)
+end
+
+function HeadingToCardinal(heading)
+    local directions = { 'N', 'NW', 'W', 'SW', 'S', 'SE', 'E', 'NE', 'N' }
+    local normalizedHeading = ((heading % 360) + 360) % 360
+    local index = math.floor((normalizedHeading + 22.5) / 45)
+    return directions[index + 1] -- Lua arrays start from index 1
 end

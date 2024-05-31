@@ -1,108 +1,59 @@
-# FearlessStudios-FiveMTemplate
+# FearlessStudios-HUD
 
 Hey there! Welcome to the FearlessStudios-FiveMTemplate. This is your go-to setup for crafting Lua resources tailored for FiveM.
 
-## Utilizing Version Checker
+## Postal Setup
 
-This script provides a version-checking mechanism for your FiveM resource by comparing the current version with the latest version available on a specified GitHub repository.
+Setting up the postal system is easy:
 
-#### Configuration
+1. **Grab a Postal File**:
+   - Check out the `postals` folder for all available postal JSON files.
 
-Before using the `versionCheck.lua` script, make sure to customize the following variables:
+2. **Customize (Optional)**:
+   - Want your own postal setup? No problem!
+   - Drop your custom postal JSON file into the `config` folder.
+
+Just make sure whatever file you're using is named `"postals.json"`. With that, you're all set to go!
+
+## Exports
+
+#### Client
+
+##### `getAOP()`
 
 ```lua
-local authorName = 'CHANGEME'
-local resourceName = 'CHANGEME'
-
-local githubUsername = 'CHANGEME'
-local githubRepo = 'CHANGEME'
-local githubVersionFilename = 'CHANGEME'
+exports['FearlessStudios-HUD']:getAOP() -- returns current locally stored AOP (should be the same as server)
 ```
 
-## Utilizing Helper Functions
-
-#### GetClosestModelWithinDistance
-
-This function retrieves information about the closest model within a specified distance from the player.
+##### `showHud()`
 
 ```lua
-local maxDistance = 10.0
-local items = {
-    { model = `prop_gas_pump_1a`, textHeightOffset = 1.2 },
-    { model = `prop_gas_pump_old2`, textHeightOffset = 1.2 },
-    -- Add more model data as needed
-}
-
-local closestModelCoords, closestModelHandle, closestTextOffset = GetClosestModelWithinDistance(maxDistance, items)
+exports['FearlessStudios-HUD']:showHud()
 ```
 
-##### You can now use the retrieved information as needed
-- model inside of items is the model hash for FiveM  
-- closestModelCoords: Coordinates of the closest model
-- closestModelHandle: Handle of the closest model
-- closestTextOffset: Text height offset associated with the closest model (useful for drawing text on the model)
-
-#### DrawNotification3D
-
-Draws a 3D notification at the specified coordinates.
-
-##### Parameters
-
-- `coords` (table): The 3D coordinates where the notification should be displayed.
-- `text` (string): The text of the notification.
-- `seconds` (number): The duration of the notification in seconds.
-- `color` (string): The color of the notification. Use one of the predefined colors. Refer to [FiveM Text Formatting](https://docs.fivem.net/docs/game-references/text-formatting/) for color codes.
-
-##### Example
+##### `hideHud()`
 
 ```lua
-DrawNotification3D({ x = 10.0, y = 20.0, z = 30.0 }, "This is a 3D notification", 5, "g")
+exports['FearlessStudios-HUD']:hideHud()
 ```
 
-#### DrawNotification2D
-
-Draws a 2D notification at the center of the screen.
-
-##### Parameters
-
-- `text` (string): The text of the notification.
-- `seconds` (number): The duration of the notification in seconds.
-- `color` (string): The color of the notification. Use one of the predefined colors. Refer to [FiveM Text Formatting](https://docs.fivem.net/docs/game-references/text-formatting/) for color codes.
-
-##### Example
+##### `isHudHidden()`
 
 ```lua
-DrawNotification2D("This is a 2D notification", 5, "y")
+exports['FearlessStudios-HUD']:isHudHidden() -- return true or false if hud is hidden
 ```
 
-#### DrawText3D
+#### Server
 
-This function draws text in 3D space at the specified coordinates.
-
-```lua
-local x, y, z = 123.45, 67.89, 10.0
-local scale = 0.5
-local text = "This is a 3D text example"
-
-DrawText3D(x, y, z, scale, text)
-```
-
-#### DrawText2D
-
-This function draws text on the screen at 2D coordinates.
+##### `getAOP()`
 
 ```lua
-local x, y = 0.5, 0.8
-local text = "This is a 2D text example"
-local scale = 0.6
-local center = true -- Set to false for left-aligned text
-
-DrawText2D(x, y, text, scale, center)
+exports['FearlessStudios-HUD']:getAOP() -- returns current server stored AOP (should be the same as client)
 ```
 
 ## Contributing
 
-Your contributions are invaluable! If you encounter a bug or have a brilliant enhancement in mind, please don't hesitate to open an issue or submit a pull request.
+Your contributions are invaluable! If you encounter a bug or have a enhancement / optimization in mind, please don't hesitate to open an issue or submit a pull request.
 
 ## License
 
