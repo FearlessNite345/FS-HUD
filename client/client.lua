@@ -8,11 +8,6 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
     end
 
-    RequestStreamedTextureDict("squaremap", false)
-    while not HasStreamedTextureDictLoaded("squaremap") do
-        Citizen.Wait(100)
-    end
-
     -- Set up the big map
     SetBigmapActive(true, false)
     Citizen.Wait(0)
