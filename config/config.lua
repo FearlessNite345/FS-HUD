@@ -3,7 +3,6 @@ Config = {}
 -- GENERAL
 Config.currencySymbol = "$"
 Config.defaultAOP = 'Sandy Shores'
-Config.checkForUpdate = true -- Would you like to Check for Updates?
 Config.useAOP = true
 Config.usePeacetime = true
 Config.hideMinimapOnFoot = false
