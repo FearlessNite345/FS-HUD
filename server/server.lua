@@ -55,3 +55,5 @@ AddEventHandler("playerJoining", function()
     TriggerClientEvent("FearlessStudios-HUD:retrieveAOP", src, AOP)
     TriggerClientEvent("FearlessStudios-HUD:retrievePeacetime", src, Peacetime)
 end)
+
+exports['FS-Lib']:VersionCheck('FS-HUD', 'fearlessnite345/fs-hud')

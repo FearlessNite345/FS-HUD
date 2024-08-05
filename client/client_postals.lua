@@ -1,7 +1,7 @@
 local postals = {}
 
 function GetClosestPostal()
-    local playerPos = GetEntityCoords(PlayerPedId())
+    local playerPos = GetEntityCoords(PlayerPedId(), false)
 
     local closestPostal = nil
     local closestDistance = math.huge
@@ -15,8 +15,10 @@ function GetClosestPostal()
     end
 
     if closestPostal ~= nil then
-        return closestPostal.code
+        CurrentPostal = tostring(closestPostal.code)
+        return tostring(closestPostal.code)
     else
+        CurrentPostal = ''
         return ''
     end
 end

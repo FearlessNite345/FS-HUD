@@ -1,3 +1,8 @@
+exports('getPostal', function ()
+    print(CurrentPostal)
+    return CurrentPostal
+end)
+
 exports('getAOP', function()
     return AOP
 end)
