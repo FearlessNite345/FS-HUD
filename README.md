@@ -22,25 +22,25 @@ Just make sure whatever file you're using is named `"postals.json"`. With that, 
 ##### `getAOP()`
 
 ```lua
-exports['FearlessStudios-HUD']:getAOP() -- returns current locally stored AOP (should be the same as server)
+exports['FS-HUD']:getAOP() -- returns current locally stored AOP (should be the same as server)
 ```
 
 ##### `showHud()`
 
 ```lua
-exports['FearlessStudios-HUD']:showHud()
+exports['FS-HUD']:showHud()
 ```
 
 ##### `hideHud()`
 
 ```lua
-exports['FearlessStudios-HUD']:hideHud()
+exports['FS-HUD']:hideHud()
 ```
 
 ##### `isHudHidden()`
 
 ```lua
-exports['FearlessStudios-HUD']:isHudHidden() -- return true or false if hud is hidden
+exports['FS-HUD']:isHudHidden() -- return true or false if hud is hidden
 ```
 
 #### Server
@@ -48,7 +48,7 @@ exports['FearlessStudios-HUD']:isHudHidden() -- return true or false if hud is h
 ##### `getAOP()`
 
 ```lua
-exports['FearlessStudios-HUD']:getAOP() -- returns current server stored AOP (should be the same as client)
+exports['FS-HUD']:getAOP() -- returns current server stored AOP (should be the same as client)
 ```
 
 ## Contributing

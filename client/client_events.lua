@@ -1,7 +1,7 @@
-RegisterNetEvent("FearlessStudios-HUD:retrieveAOP", function(newAOP)
+RegisterNetEvent("FS-HUD:retrieveAOP", function(newAOP)
     AOP = newAOP
 end)
 
-RegisterNetEvent("FearlessStudios-HUD:retrievePeacetime", function(newPeacetime)
+RegisterNetEvent("FS-HUD:retrievePeacetime", function(newPeacetime)
     Peacetime = newPeacetime
 end)

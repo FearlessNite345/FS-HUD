@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
 
     -- Load postals and request AOP from server
     LoadPostals()
-    TriggerServerEvent("FearlessStudios-HUD:getAOP")
+    TriggerServerEvent("FS-HUD:getAOP")
 end)
 
 -- HUD Update Thread
