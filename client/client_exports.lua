@@ -1,5 +1,4 @@
 exports('getPostal', function ()
-    print(CurrentPostal)
     return CurrentPostal
 end)
 
