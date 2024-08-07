@@ -1,5 +1,8 @@
 # FearlessStudios-HUD
 
+![Github All Releases](https://img.shields.io/github/downloads/FearlessNite345/FS-hud/total.svg)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/fearlessnite345/fs-hud/latest/total)
+
 Hey there! Welcome to the FearlessStudios-FiveMTemplate. This is your go-to setup for crafting Lua resources tailored for FiveM.
 
 ## Postal Setup
