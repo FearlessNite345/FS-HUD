@@ -6,6 +6,10 @@
 
 Hey there! Welcome to the FearlessStudios-FiveMTemplate. This is your go-to setup for crafting Lua resources tailored for FiveM.
 
+## Setup
+This script now requires FS-Lib found here
+https://github.com/FearlessNite345/FS-Lib/releases/latest
+
 ## Postal Setup
 
 Setting up the postal system is easy:
