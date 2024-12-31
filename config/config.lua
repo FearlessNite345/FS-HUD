@@ -1,7 +1,6 @@
 Config = {}
 
 -- GENERAL
-Config.currencySymbol = "$"
 Config.defaultAOP = 'Sandy Shores'
 Config.useAOP = true
 Config.usePeacetime = true
@@ -16,12 +15,12 @@ Config.hideHudCommand = 'hide-hud'
 
 -- HUD CUSTOMIZATION
 Config.streetX = 0.22
-Config.streetY = 0.855
+Config.streetY = 0.863
 Config.zoneX = 0.22
-Config.zoneY = 0.875
+Config.zoneY = 0.887
 Config.headingX = 0.17
-Config.headingY = 0.85
+Config.headingY = 0.86
 Config.timeX = 0.17
-Config.timeY = 0.915
+Config.timeY = 0.92
 Config.postalaopX = 0.17
-Config.postalaopY = 0.94
+Config.postalaopY = 0.946

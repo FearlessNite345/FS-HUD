@@ -42,42 +42,42 @@ Citizen.CreateThread(function()
             local heading = GetGameplayCamRot(0).z
 
             -- Draw HUD elements
-            DrawText2D(Config.headingX, Config.headingY,
+            FS_Lib:DrawText2D(Config.headingX, Config.headingY,
                 "~w~| " .. LocationHudColor .. HeadingToCardinal(heading) .. " ~w~|", bigScale, false)
             if streetCrossingName ~= '' then
-                DrawText2D(Config.streetX, Config.streetY,
+                FS_Lib:DrawText2D(Config.streetX, Config.streetY,
                     LocationHudColor .. streetName .. " ~c~/ " .. streetCrossingName, 0.45, false)
             else
-                DrawText2D(Config.streetX, Config.streetY, LocationHudColor .. streetName, 0.45, false)
+                FS_Lib:DrawText2D(Config.streetX, Config.streetY, LocationHudColor .. streetName, 0.45, false)
             end
-            DrawText2D(Config.zoneX, Config.zoneY, LocationHudColor .. zone, 0.45, false)
+            FS_Lib:DrawText2D(Config.zoneX, Config.zoneY, LocationHudColor .. zone, 0.45, false)
 
             local date, time = GetCurrentTime(false)
             if Config.useGametime then
-                DrawText2D(Config.timeX, Config.timeY,
+                FS_Lib:DrawText2D(Config.timeX, Config.timeY,
                     LocationHudColor .. "ID: " .. GetPlayerServerId(PlayerId()) .. " | TIME: " .. time, scale, false)
             else
-                DrawText2D(Config.timeX, Config.timeY,
+                FS_Lib:DrawText2D(Config.timeX, Config.timeY,
                     LocationHudColor ..
                     "ID: " .. GetPlayerServerId(PlayerId()) .. " | TIME: " .. time .. " | DATE: " .. date, scale, false)
             end
 
             local closestPostal = GetClosestPostal()
             if Config.useAOP and Config.usePeacetime then
-                DrawText2D(Config.postalaopX, Config.postalaopY,
+                FS_Lib:DrawText2D(Config.postalaopX, Config.postalaopY,
                     LocationHudColor ..
                     "POSTAL: " ..
                     closestPostal .. " | AOP: " .. AOP .. " | Peacetime: " .. CapitalizeFirst(tostring(Peacetime)), scale,
                     false)
             elseif Config.useAOP and not Config.usePeacetime then
-                DrawText2D(Config.postalaopX, Config.postalaopY,
+                FS_Lib:DrawText2D(Config.postalaopX, Config.postalaopY,
                     LocationHudColor .. "POSTAL: " .. closestPostal .. " | AOP: " .. AOP, scale, false)
             elseif not Config.useAOP and Config.usePeacetime then
-                DrawText2D(Config.postalaopX, Config.postalaopY,
+                FS_Lib:DrawText2D(Config.postalaopX, Config.postalaopY,
                     LocationHudColor ..
                     "POSTAL: " .. closestPostal .. " | Peacetime: " .. CapitalizeFirst(tostring(Peacetime)), scale, false)
             else
-                DrawText2D(Config.postalaopX, Config.postalaopY, LocationHudColor .. "POSTAL: " .. closestPostal, scale,
+                FS_Lib:DrawText2D(Config.postalaopX, Config.postalaopY, LocationHudColor .. "POSTAL: " .. closestPostal, scale,
                     false)
             end
         else
@@ -111,7 +111,7 @@ Citizen.CreateThread(function()
             local playerPedID = PlayerPedId()
 
             if IsControlPressed(0, 106) then
-                DrawText2D(0.5, 0.8, "~r~Peacetime is enabled.", 0.6, true)
+                FS_Lib:DrawText2D(0.5, 0.8, "~r~Peacetime is enabled.", 0.6, true)
             end
             DisableControlAction(0, 140, true)     -- Disable melee attack
             SetPlayerCanDoDriveBy(playerPedID, false)
